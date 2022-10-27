@@ -4,12 +4,100 @@
 
 <h2>Random number generator</h2>
 
+<button onclick="tableCreate1()"> make your table</button>
+<script>
+
+function tableCreate(row, col) {
+    var total = window.prompt("Enter the size of the table you want to add")
+    //변수 total은 user input 넘버로 지정 for making square table
+    var col = Math.sqrt(total);
+    // 변수 col은 토탈 받은거 루트 씌운거
+    var row = Math.sqrt(total);
+    //var row is total square root
+    var total2 = row * col;
+    //row랑 col이랑 곱한 수를 total2 로 지정해둬서 그만큼 랜덤 숫자 만들게 함
+    var nums = new Array();
+    var randomn = Math.floor(Math.random() * 100) + 1;
+    for (var i =0; i < total2; i++) {
+        while (nums.includes(randomn)) {
+        randomn = Math.floor(Math.random() * 100) + 1;
+        }
+    nums.push(randomn);
+    console.log(nums);
+
+    }
+    nums.sort(function(a, b){return a - b});
+    //sort the numbers in array
+    var count = 0;
+    let body = document.body;
+    // body document?? 
+    let tbl  = document.createElement('table');
+    //tbl은 테이블 만드는 documnet??
+    tbl.style.width  = '200px';
+    tbl.style.border = '5px solid black';
+    for(let i = 0; i < row; i++){
+        let tr = tbl.insertRow();
+        // put the number of rows whatever user put in
+        for(let j = 0; j < col; j++){
+                let td = tr.insertCell();
+                //col도 위에서 지정해줬으니 고고
+                td.appendChild(document.createTextNode(nums[count]));
+                td.style.border = '1px solid black';
+                count++;
+            }
+    }
+    body.appendChild(tbl);
+}
+tableCreate()
+
+    </script>
 <script src="bingo.js">
 
 </script>
 <button onclick="draw()"> Draw a number</button>
 <button onclick="maketable()"> make a table</button>
 <button onclick="maketable2()"> make bingo table</button>
+<button onclick="maketable3()"> make bingo table</button>
+<script>
+
+    function tableCreate(row, col){
+        var row = window.prompt("Enter the size of the table you want to add")
+        //이번에는 유저가 아무 숫자 입력하면 row 만듦
+        var col = row; //row랑 col이랑 같게 만듦
+        var total2 = row * col;
+        //row랑 col이랑 곱한 수를 total2 로 지정해둬서 그만큼 숫자 만들게 함
+        var nums = new Array();
+        var randomn = Math.floor(Math.random() * 100) + 1;
+        for (var i =0; i < total2; i++) {
+            while (nums.includes(randomn)) {
+            randomn = Math.floor(Math.random() * 100) + 1;
+            }
+        nums.push(randomn);
+        console.log(nums);
+        
+        }
+        nums.sort(function(a, b){return a - b});
+        var count = 0;
+        let body = document.body;
+        let tbl  = document.createElement('table');
+        tbl.style.width  = '200px';
+        tbl.style.border = '5px solid black';
+        for(let i = 0; i < row; i++){
+            let tr = tbl.insertRow();
+            for(let j = 0; j < col; j++){
+                    let td = tr.insertCell();
+                    td.appendChild(document.createTextNode(nums[count]));
+                    td.style.border = '1px solid black';
+                    count++;
+                }
+        }
+        body.appendChild(tbl);
+    }
+    tableCreate()
+    
+        </script>
+
+
 
 </body>
 </html>
